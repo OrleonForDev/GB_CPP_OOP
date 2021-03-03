@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdint>
+#include <exception>
 
 class Power{
 private:
@@ -42,15 +43,73 @@ public:
 
 
 };
+
+class Stack{
+private:
+    int mas[10];
+    int length = 0;
+public:
+    void Reset(){
+        length = 0;
+        for (int& m : mas) {
+            m = 0;
+        }
+    }
+
+    bool Push(int val){
+        if(length < 10){
+            mas[length] = val;
+            ++length;
+            return true;
+        }
+        return false;
+    }
+
+    int Pop(){
+        if (length == 0){
+            throw std::out_of_range("Stack is empty");
+        }
+        else{
+            return mas[--length];
+        }
+    }
+
+    void Print() const{
+        std::cout << "( ";
+        for (int i = 0; i < length; ++i) {
+            std::cout << mas[i] << ' ';
+        }
+        std::cout << " )" << std::endl;
+    }
+};
+
 int main() {
+    //Task1
     Power power;
     power.SetA(5.6f);
     power.SetB(3.8f);
-
     std::cout << power.Calculate() << std::endl;
 
+    //Task2
     RGBA rgba(128, 128, 0, 100);
     rgba.Print();
+
+    //Task3
+    Stack stack;
+    stack.Push(56);
+    std::cout << stack.Pop() << std::endl;
+
+    for (int i = 0; i < 10; ++i) {
+        stack.Push(i*i);
+    }
+
+    std::cout << stack.Pop() << std::endl;
+    std::cout << stack.Pop() << std::endl;
+
+    stack.Print();
+
+    stack.Reset();
+    stack.Print();
 
 
     return 0;
