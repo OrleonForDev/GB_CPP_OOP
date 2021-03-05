@@ -2,6 +2,8 @@
 #include <cstdint>
 #include <exception>
 
+/*WELL DONE*/
+
 class Power{
 private:
     float a = 0.0f;
@@ -39,6 +41,8 @@ public:
                   << "Green: " << m_green
                   << "Blue: " << m_blue
                   << "Alpha: " << m_alpha << std::endl;
+        
+        //https://stackoverflow.com/questions/19562103/uint8-t-cant-be-printed-with-cout
     }
 
 
@@ -54,6 +58,8 @@ public:
         for (int& m : mas) {
             m = 0;
         }
+        
+        //https://en.cppreference.com/w/cpp/string/byte/memset
     }
 
     bool Push(int val){
